@@ -2,12 +2,15 @@
 #' @description Presents mean, median, range, and sample size by group in an easy-to-read tibble.
 #'
 #' @param data a data frame or tibble containing `x` and `by`.
-#' @param x a numeric variable in the dataset to compute summary statistics for.
-#' @param by a factor or character variable in the dataset by which to compute summary statistics.
+#' @param x a numeric variable in `data` to compute summary statistics for.
+#' @param by a factor or character variable in `data` by which to compute summary statistics.
 #' @param na.rm a logical evaluation to `TRUE` or `FALSE` indicating whether `NA` values should be stripped.
 #' @param ... for further arguments to modify the calculation and formatting of the summary statistics.
 #'
 #' @return a tibble with mean, median, range, and sample size calculations by levels of your chosen grouping variable.
+#' @details
+#' basic_stats converts data frames to tibbles. It also converts any character variable with fewer than 20 unique values to a factor variable. If the character variable contains more than 20 unique values, an error will be issued. This constraint can be overridden by converting your grouping variable to a factor before passing it into the function.
+#'
 #' @import dplyr tibble
 #' @importFrom stats median na.omit
 #' @export

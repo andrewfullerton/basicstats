@@ -9,9 +9,9 @@
 MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 <!-- badges: end -->
 
-**basicstats** makes it easier for you to view basic summary statistics
-(mean, median, range, and sample size) by levels of a grouping variable
-in a tidy, easy-to-read summary.
+**basicstats** makes it easier for you to produce basic summary
+statistics (mean, median, range, and sample size) by levels of a
+grouping variable in a tidy, easy-to-read summary.
 
 ## Installation
 
@@ -55,9 +55,9 @@ iris |>
 ```
 
 In addition to this basic functionality, `basic_stats` also dynamically
-and intelligently handles character-to-factor and dataframe-to-tibble
-conversions. Here’s an example passing in a dataframe, `iris`, with a
-character variable, `Species`, as our grouping variable. The dataframe
+and intelligently handles character to factor and data frame to tibble
+conversions. Here’s an example passing in a data frame, `iris`, with a
+character variable, `Species`, as our grouping variable. The data frame
 is seamlessly converted to a tibble and `Species` is converted to a
 factor.
 
