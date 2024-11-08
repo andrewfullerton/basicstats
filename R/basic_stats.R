@@ -1,11 +1,4 @@
 basic_stats <- function(data, x, by, na.rm = TRUE, ...) {
-  # Check if dependencies are installed and load
-  if (!requireNamespace("tidyverse", quietly = TRUE)) {
-    stop("The tidyverse package is not installed. Please install it using install.packages('tidyverse').\n")
-  } else {
-    suppressMessages(library(tidyverse)) # load tidyverse without console message
-  }
-
   # Check if input 'data' is a non-empty data frame or tibble
   if (!is.data.frame(data) || nrow(data) == 0 || ncol(data) == 0) {
     stop("Input data must be a non-empty dataframe or tibble.")
