@@ -3,7 +3,7 @@ Title: Basic summary stats by group
 Version: 0.1.3
 Authors@R: 
     person("Andrew", "Fullerton", , "afullert@student.ubc.ca", role = c("aut", "cre"))
-Description: basicstats makes it easier for you to produce basic summary statistics (mean, median, range, and sample size) by levels of a grouping variable in a tidy, easy-to-read summary.
+Description: basicstats makes it easier for you to produce basic summary statistics (mean, median, range, and sample size) by levels of a categorical variable in a tidy, easy-to-read summary.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

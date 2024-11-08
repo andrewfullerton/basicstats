@@ -11,7 +11,7 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.or
 
 **basicstats** makes it easier for you to produce basic summary
 statistics (mean, median, range, and sample size) by levels of a
-grouping variable in a tidy, easy-to-read summary.
+categorical variable in a tidy, easy-to-read summary.
 
 ## Installation
 
