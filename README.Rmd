@@ -2,6 +2,8 @@
 output: github_document
 ---
 
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -13,45 +15,53 @@ knitr::opts_chunk$set(
 
 # basicstats
 
-The goal of **basicstats** is to make it easier for you to get the basic summary statistics you want (mean, median, range, and sample size, of course) based on the groupings you're most interested in.
+<!-- badges: start -->
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+<!-- badges: end -->
+
+**basicstats** makes it easier for you to view basic summary statistics (mean, median, range, and sample size) by levels of a third grouping variable in a tidy, easy-to-read summary.
 
 ## Installation
 
 You can install the development version of `basicstats` from [GitHub](https://github.com/andrewfullerton/basicstats) with:
 
 ``` r
+# install.packages("devtools")
 devtools::install_github("andrewfullerton/basicstats")
 ```
 
-## Using the `basic_stats` function
+## Using basicstats
 
-**basicstats** contains one ground-breaking, revolutionary, first-of-its-kind function called `basic_stats`. Like magic, you simply provide some data, a numeric variable you want basic summary statistics for, a grouping variable by which you want to compute those summary statistics, and voila!
+**basicstats** contains a single functional called `basic_stats`. Simply provide some data, a numeric variable you want basic summary statistics for, and a grouping variable by which you want to compute those summary statistics, and voila!
 
 ### Here's how it works:
 
+Load the package.
+
 ```{r}
 library(basicstats)
-library(tidyverse)
 ```
+
+`basic_stats` generates a tidy, easy-to-read tibble that contains the mean, median, range, and sample size by levels of your chosen grouping variable. Here's an example using `Sepal.Width` and `Species` from the `iris` dataset.
 
 ```{r}
 iris |> 
   basic_stats(Sepal.Width, Species)
 ```
 
-In addition to this basic functionality, `basic_stats` dynamically and intelligently handles character to factor conversions.
+In addition to this basic functionality, `basic_stats` also dynamically and intelligently handles character-to-factor and dataframe-to-tibble conversions. Here's an example passing in the dataframe `iris` with character variable `Species_chr` as our grouping variable; you'll notice that the dataframe was seamlessly converted to a tibble and `Species` was converted to a factor.
 
 ```{r warning=TRUE}
-iris |> 
-  mutate(Species = as.character(Species)) |> # convert species to character
+iris |>
+  transform(Species = as.character(Species)) |>
   basic_stats(Sepal.Width, Species)
 ```
 
-It also lets to modify your summary stats to your liking by passing additional arguments into the function via the `...` argument.
+To get the most out of `basic_stats`, you can further modify the calculation and presentation of your summary statistics by passing additional arguments into the function via the `...` argument. Here's an example using `trim` to remove some extreme values from the data before calculating our summary statistics.
 
 ```{r}
 iris |>
-  basic_stats(Sepal.Width, Species, trim = 0.2)
+  basic_stats(Sepal.Width, Species, trim = 0.3)
 ```
 
-So much power with so little code. Welcome to **basicstats**.
+Thanks for checking out **basicstats**!

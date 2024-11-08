@@ -1,9 +1,17 @@
 
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
 # basicstats
 
-The goal of **basicstats** is to make it easier for you to get the basic
-summary statistics you want (mean, median, range, and sample size, of
-course) based on the groupings you’re most interested in.
+<!-- badges: start -->
+
+[![License:
+MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+<!-- badges: end -->
+
+**basicstats** makes it easier for you to view basic summary statistics
+(mean, median, range, and sample size) by levels of a third grouping
+variable in a tidy, easy-to-read summary.
 
 ## Installation
 
@@ -11,33 +19,29 @@ You can install the development version of `basicstats` from
 [GitHub](https://github.com/andrewfullerton/basicstats) with:
 
 ``` r
+# install.packages("devtools")
 devtools::install_github("andrewfullerton/basicstats")
 ```
 
-## Using the `basic_stats` function
+## Using basicstats
 
-**basicstats** contains one ground-breaking, revolutionary,
-first-of-its-kind function called `basic_stats`. Like magic, you simply
+**basicstats** contains a single functional called `basic_stats`. Simply
 provide some data, a numeric variable you want basic summary statistics
-for, a grouping variable by which you want to compute those summary
+for, and a grouping variable by which you want to compute those summary
 statistics, and voila!
 
 ### Here’s how it works:
 
+Load the package.
+
 ``` r
 library(basicstats)
-library(tidyverse)
-#> ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-#> ✔ dplyr     1.1.4     ✔ readr     2.1.5
-#> ✔ forcats   1.0.0     ✔ stringr   1.5.1
-#> ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-#> ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
-#> ✔ purrr     1.0.2     
-#> ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-#> ✖ dplyr::filter() masks stats::filter()
-#> ✖ dplyr::lag()    masks stats::lag()
-#> ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 ```
+
+`basic_stats` generates a tidy, easy-to-read tibble that contains the
+mean, median, range, and sample size by levels of your chosen grouping
+variable. Here’s an example using `Sepal.Width` and `Species` from the
+`iris` dataset.
 
 ``` r
 iris |> 
@@ -50,35 +54,42 @@ iris |>
 #> 3 virginica   2.97    3   2.2 - 3.8    50
 ```
 
-In addition to this basic functionality, `basic_stats` dynamically and
-intelligently handles character to factor conversions.
-
-``` r
-iris |> 
-  mutate(Species = as.character(Species)) |> # convert species to character
-  basic_stats(Sepal.Width, Species)
-#> Warning in basic_stats(mutate(iris, Species = as.character(Species)),
-#> Sepal.Width, : Species has been converted to a factor with 3 levels.
-#> # A tibble: 3 × 5
-#>   Species     mean median range         n
-#>   <fct>      <dbl>  <dbl> <chr>     <int>
-#> 1 setosa      3.43    3.4 2.3 - 4.4    50
-#> 2 versicolor  2.77    2.8 2 - 3.4      50
-#> 3 virginica   2.97    3   2.2 - 3.8    50
-```
-
-It also lets to modify your summary stats to your liking by passing
-additional arguments into the function via the `...` argument.
+In addition to this basic functionality, `basic_stats` also dynamically
+and intelligently handles character-to-factor and dataframe-to-tibble
+conversions. Here’s an example passing in the dataframe `iris` with
+character variable `Species_chr` as our grouping variable; you’ll notice
+that the dataframe was seamlessly converted to a tibble and `Species`
+was converted to a factor.
 
 ``` r
 iris |>
-  basic_stats(Sepal.Width, Species, trim = 0.2)
+  transform(Species = as.character(Species)) |>
+  basic_stats(Sepal.Width, Species)
+#> Warning in basic_stats(transform(iris, Species = as.character(Species)), :
+#> Species has been converted to a factor with 3 levels.
 #> # A tibble: 3 × 5
 #>   Species     mean median range         n
 #>   <fct>      <dbl>  <dbl> <chr>     <int>
-#> 1 setosa      3.41    3.4 0.2 - 4.4    50
-#> 2 versicolor  2.80    2.8 0.2 - 3.4    50
-#> 3 virginica   2.96    3   0.2 - 3.8    50
+#> 1 setosa      3.43    3.4 2.3 - 4.4    50
+#> 2 versicolor  2.77    2.8 2 - 3.4      50
+#> 3 virginica   2.97    3   2.2 - 3.8    50
 ```
 
-So much power with so little code. Welcome to **basicstats**.
+To get the most out of `basic_stats`, you can further modify the
+calculation and presentation of your summary statistics by passing
+additional arguments into the function via the `...` argument. Here’s an
+example using `trim` to remove some extreme values from the data before
+calculating our summary statistics.
+
+``` r
+iris |>
+  basic_stats(Sepal.Width, Species, trim = 0.3)
+#> # A tibble: 3 × 5
+#>   Species     mean median range         n
+#>   <fct>      <dbl>  <dbl> <chr>     <int>
+#> 1 setosa      3.41    3.4 0.3 - 4.4    50
+#> 2 versicolor  2.81    2.8 0.3 - 3.4    50
+#> 3 virginica   2.96    3   0.3 - 3.8    50
+```
+
+Thanks for checking out **basicstats**!

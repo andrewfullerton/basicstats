@@ -1,13 +1,13 @@
-#' @title Basic summary stats by strata
-#' @description Compute mean, median, range, and sample size by strata.
+#' @title Basic summary stats by group
+#' @description Presents mean, median, range, and sample size by group in an easy-to-read tibble.
 #'
 #' @param data a data frame or tibble containing `x` and `by`.
 #' @param x a numeric variable in the dataset to compute summary statistics for.
 #' @param by a categorical variable in the dataset by which to compute summary statistics.
-#' @param na.rm a logical evaluation to TRUE or FALSE indicating whether `NA` values should be stripped.
+#' @param na.rm a logical evaluation to `TRUE` or `FALSE` indicating whether `NA` values should be stripped.
 #' @param ... for further arguments to modify the calculation and formatting of the summary statistics.
 #'
-#' @return a tibble with mean, median, range, and sample size calculations by strata.
+#' @return a tibble with mean, median, range, and sample size calculations by levels of your chosen grouping variable.
 #' @import dplyr tibble
 #' @importFrom stats median na.omit
 #' @export

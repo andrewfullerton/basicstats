@@ -2,7 +2,7 @@
 % Please edit documentation in R/basic_stats.R
 \name{basic_stats}
 \alias{basic_stats}
-\title{Basic summary stats by strata}
+\title{Basic summary stats by group}
 \usage{
 basic_stats(data, x, by, na.rm = TRUE, ...)
 }
@@ -13,15 +13,15 @@ basic_stats(data, x, by, na.rm = TRUE, ...)
 
 \item{by}{a categorical variable in the dataset by which to compute summary statistics.}
 
-\item{na.rm}{a logical evaluation to TRUE or FALSE indicating whether \code{NA} values should be stripped.}
+\item{na.rm}{a logical evaluation to \code{TRUE} or \code{FALSE} indicating whether \code{NA} values should be stripped.}
 
 \item{...}{for further arguments to modify the calculation and formatting of the summary statistics.}
 }
 \value{
-a tibble with mean, median, range, and sample size calculations by strata.
+a tibble with mean, median, range, and sample size calculations by levels of your chosen grouping variable.
 }
 \description{
-Compute mean, median, range, and sample size by strata.
+Presents mean, median, range, and sample size by group in an easy-to-read tibble.
 }
 \examples{
 # Basic usage:
