@@ -77,7 +77,7 @@ iris |>
 
 To get the most out of `basic_stats`, you can further modify the
 calculation and presentation of your summary statistics by passing
-additional arguments into the function via `...`. Here’s an example
+additional parameters into the function via `...`. Here’s an example
 using `trim` to remove some extreme values from the data before
 calculating our summary statistics.
 

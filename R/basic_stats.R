@@ -5,7 +5,7 @@
 #' @param x a numeric variable in `data` to compute summary statistics for.
 #' @param by a factor or character variable in `data` by which to compute summary statistics.
 #' @param na.rm a logical evaluation to `TRUE` or `FALSE` indicating whether `NA` values should be stripped.
-#' @param ... for further arguments to modify the calculation and formatting of the summary statistics.
+#' @param ... for further parameters to modify the calculation and formatting of the summary statistics.
 #'
 #' @return a tibble with mean, median, range, and sample size calculations by levels of your chosen grouping variable.
 #' @details

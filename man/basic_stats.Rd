@@ -15,7 +15,7 @@ basic_stats(data, x, by, na.rm = TRUE, ...)
 
 \item{na.rm}{a logical evaluation to \code{TRUE} or \code{FALSE} indicating whether \code{NA} values should be stripped.}
 
-\item{...}{for further arguments to modify the calculation and formatting of the summary statistics.}
+\item{...}{for further parameters to modify the calculation and formatting of the summary statistics.}
 }
 \value{
 a tibble with mean, median, range, and sample size calculations by levels of your chosen grouping variable.
