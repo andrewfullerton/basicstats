@@ -1,12 +1,16 @@
 Package: basicstats
-Title: What the Package Does (One Line, Title Case)
+Title: Basic Summary Stats by Strata
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Andrew", "Fullerton", , "afullert@student.ubc.ca", role = c("aut", "cre"))
+Description: Compute the mean, median, range, and sample size of a numeric variable for groups of a categorical variable.
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
+Imports: 
+    dplyr,
+    tibble
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
