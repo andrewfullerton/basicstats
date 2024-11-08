@@ -1,0 +1,57 @@
+---
+output: github_document
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# basicstats
+
+The goal of **basicstats** is to make it easier for you to get the basic summary statistics you want (mean, median, range, and sample size, of course) based on the groupings you're most interested in.
+
+## Installation
+
+You can install the development version of `basicstats` from [GitHub](https://github.com/andrewfullerton/basicstats) with:
+
+``` r
+devtools::install_github("andrewfullerton/basicstats")
+```
+
+## Using the `basic_stats` function
+
+**basicstats** contains one ground-breaking, revolutionary, first-of-its-kind function called `basic_stats`. Like magic, you simply provide some data, a numeric variable you want basic summary statistics for, a grouping variable by which you want to compute those summary statistics, and voila!
+
+### Here's how it works:
+
+```{r}
+library(basicstats)
+library(tidyverse)
+```
+
+```{r}
+iris |> 
+  basic_stats(Sepal.Width, Species)
+```
+
+In addition to this basic functionality, `basic_stats` dynamically and intelligently handles character to factor conversions.
+
+```{r warning=TRUE}
+iris |> 
+  mutate(Species = as.character(Species)) |> # convert species to character
+  basic_stats(Sepal.Width, Species)
+```
+
+It also lets to modify your summary stats to your liking by passing additional arguments into the function via the `...` argument.
+
+```{r}
+iris |>
+  basic_stats(Sepal.Width, Species, trim = 0.2)
+```
+
+So much power with so little code. Welcome to **basicstats**.
