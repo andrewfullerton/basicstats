@@ -10,8 +10,8 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.or
 <!-- badges: end -->
 
 **basicstats** makes it easier for you to view basic summary statistics
-(mean, median, range, and sample size) by levels of a third grouping
-variable in a tidy, easy-to-read summary.
+(mean, median, range, and sample size) by levels of a grouping variable
+in a tidy, easy-to-read summary.
 
 ## Installation
 
@@ -27,7 +27,7 @@ devtools::install_github("andrewfullerton/basicstats")
 
 **basicstats** contains a single functional called `basic_stats`. Simply
 provide some data, a numeric variable you want basic summary statistics
-for, and a grouping variable by which you want to compute those summary
+for, and a grouping variable by which to compute those summary
 statistics, and voila!
 
 ### Here’s how it works:
@@ -56,10 +56,10 @@ iris |>
 
 In addition to this basic functionality, `basic_stats` also dynamically
 and intelligently handles character-to-factor and dataframe-to-tibble
-conversions. Here’s an example passing in the dataframe `iris` with
-character variable `Species_chr` as our grouping variable; you’ll notice
-that the dataframe was seamlessly converted to a tibble and `Species`
-was converted to a factor.
+conversions. Here’s an example passing in a dataframe, `iris`, with a
+character variable, `Species`, as our grouping variable. The dataframe
+is seamlessly converted to a tibble and `Species` is converted to a
+factor.
 
 ``` r
 iris |>
@@ -77,8 +77,8 @@ iris |>
 
 To get the most out of `basic_stats`, you can further modify the
 calculation and presentation of your summary statistics by passing
-additional arguments into the function via the `...` argument. Here’s an
-example using `trim` to remove some extreme values from the data before
+additional arguments into the function via `...`. Here’s an example
+using `trim` to remove some extreme values from the data before
 calculating our summary statistics.
 
 ``` r
@@ -92,4 +92,4 @@ iris |>
 #> 3 virginica   2.96    3   0.3 - 3.8    50
 ```
 
-Thanks for checking out **basicstats**!
+## Thanks for checking out basicstats!

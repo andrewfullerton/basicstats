@@ -3,7 +3,7 @@
 #'
 #' @param data a data frame or tibble containing `x` and `by`.
 #' @param x a numeric variable in the dataset to compute summary statistics for.
-#' @param by a categorical variable in the dataset by which to compute summary statistics.
+#' @param by a factor or character variable in the dataset by which to compute summary statistics.
 #' @param na.rm a logical evaluation to `TRUE` or `FALSE` indicating whether `NA` values should be stripped.
 #' @param ... for further arguments to modify the calculation and formatting of the summary statistics.
 #'
@@ -15,8 +15,13 @@
 #' @examples
 #' # Basic usage:
 #' basic_stats(iris, Sepal.Width, Species)
+#' # Produces summary stats for Sepal.Width by levels
+#' # of Species from the iris dataset.
+#'
 #' # Advanced usage:
 #' basic_stats(iris, Sepal.Width, Species, na.rm = FALSE, trim = 0.1)
+#' # Modifies the previous example by retaining
+#' # null values and trimming the 10% most extreme values.
 basic_stats <- function(data, x, by, na.rm = TRUE, ...) {
   # Check if input 'data' is a non-empty data frame or tibble
   if (!is.data.frame(data) || nrow(data) == 0 || ncol(data) == 0) {
@@ -33,7 +38,7 @@ basic_stats <- function(data, x, by, na.rm = TRUE, ...) {
   # Check if 'x' exists and is numeric
   if (!x_name %in% names(data)) {
     stop(x_name, " not found in the data.")
-  } else if (length(na.omit(data |> pull({{ x }}))) == 0) {
+  } else if (length(stats::na.omit(data |> dplyr::pull({{ x }}))) == 0) {
     stop(x_name, " doesn't contain any non-missing values.")
   } else if (!is.numeric(data |> dplyr::pull({{ x }}))) {
     stop("Variable ", x_name, " must be numeric.")
@@ -66,13 +71,13 @@ basic_stats <- function(data, x, by, na.rm = TRUE, ...) {
 
   # Run the summary
   result <- data |>
-    group_by({{ by }}) |>
-    summarise(
+    dplyr::group_by({{ by }}) |>
+    dplyr::summarise(
       mean = mean({{ x }}, na.rm = na.rm, ...),
       median = stats::median({{ x }}, na.rm = na.rm, ...),
       range = paste0(min({{ x }}, na.rm = na.rm, ...), " - ",
                      max({{ x }}, na.rm = na.rm, ...)),
-      n = n()
+      n = dplyr::n()
     )
 
   return(result)

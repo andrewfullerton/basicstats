@@ -11,7 +11,7 @@ basic_stats(data, x, by, na.rm = TRUE, ...)
 
 \item{x}{a numeric variable in the dataset to compute summary statistics for.}
 
-\item{by}{a categorical variable in the dataset by which to compute summary statistics.}
+\item{by}{a factor or character variable in the dataset by which to compute summary statistics.}
 
 \item{na.rm}{a logical evaluation to \code{TRUE} or \code{FALSE} indicating whether \code{NA} values should be stripped.}
 
@@ -26,6 +26,11 @@ Presents mean, median, range, and sample size by group in an easy-to-read tibble
 \examples{
 # Basic usage:
 basic_stats(iris, Sepal.Width, Species)
+# Produces summary stats for Sepal.Width by levels
+# of Species from the iris dataset.
+
 # Advanced usage:
 basic_stats(iris, Sepal.Width, Species, na.rm = FALSE, trim = 0.1)
+# Modifies the previous example by retaining
+# null values and trimming the 10\% most extreme values.
 }
